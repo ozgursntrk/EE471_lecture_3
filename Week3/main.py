@@ -1,26 +1,25 @@
-from custom_classes import MediaItem, Book, DVD
+from custom_classes import MediaItem, Book, DVD, LibraryCollection
 
-book = MediaItem("1984", "George Orwell")
-movie = MediaItem("Inception", "Christopher Nolan")
+library = LibraryCollection()
 
-print("--- Before ---")
-print(book)
-print(movie)
+dune = Book("Dune", "Frank Herbert", 412)
+interstellar = DVD("Interstellar", "Christopher Nolan", 169)
+magazine = MediaItem("National Geographic", "Various")
+orwell = Book("1984", "George Orwell", 328)
 
-print("\n--- Checking out the book ---")
-print(book.checkout())
-print(book.checkout())
+library.add_item(dune)
+library.add_item(interstellar)
+library.add_item(magazine)
+library.add_item(orwell)
 
-print("\n--- After ---")
-print(book)
-print(movie)
+print("--- All items ---")
+for item in library.items:
+    print(item)
 
-print("\n--- Book with page count ---")
-print(Book("Dune", "Frank Herbert", 412))
+print("\nAvailable before checkout:", library.list_available())
 
-print("\n--- DVD checkout ---")
-dvd = DVD("Interstellar", "Christopher Nolan", 169)
-print(dvd)
-print(dvd.checkout())
-print(dvd.checkout())
-print(dvd)
+print("\n--- Checking out 2 items ---")
+print(dune.checkout())
+print(interstellar.checkout())
+
+print("\nAvailable after checkout:", library.list_available())
