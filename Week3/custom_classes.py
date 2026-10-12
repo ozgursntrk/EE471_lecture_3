@@ -2,23 +2,23 @@
 
 
 class MediaItem:
-    """A generic item that can be borrowed from a library."""
+    """A generic item that can be checked out from a library."""
 
     def __init__(self, title, author, is_available=True):
-        """Create an item with its title, author and availability."""
+        """Create an item with its title and author; is_available defaults to True."""
         self.title = title
         self.author = author
         self.is_available = is_available
 
     def checkout(self):
-        """Mark the item as borrowed and return a status message."""
+        """Check the item out if available. Return 'Successful checkout' on success, otherwise 'Already out'."""
         if self.is_available:
             self.is_available = False
             return "Successful checkout"
         return "Already out"
 
     def return_item(self):
-        """Mark the item as available again."""
+        """Mark the item as available."""
         self.is_available = True
 
     def __str__(self):
@@ -43,10 +43,10 @@ class Book(MediaItem):
 class DVD(MediaItem):
     """A media item that stores its duration and needs careful handling."""
 
-    def __init__(self, title, author, duration, is_available=True):
+    def __init__(self, title, author, duration_minutes, is_available=True):
         """Create a DVD with its duration in minutes."""
         super().__init__(title, author, is_available)
-        self.duration = duration
+        self.duration_minutes = duration_minutes
 
     def checkout(self):
         """Check out the DVD and remind the borrower to handle it carefully."""
